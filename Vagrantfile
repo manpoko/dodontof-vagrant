@@ -7,6 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "dodontof-vm"
   config.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20131103.box"
+  config.vm.hostname = 'dodontof-vm'
 
   config.vm.network :forwarded_port, guest: 80, host: 8080
 
@@ -19,5 +20,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.gui = false
     vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
-  
+
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = "./cookbooks"
+    chef.roles_path = "./roles"
+    chef.add_recipe "yum"
+    chef.add_recipe "nginx"
+  end
+
 end
