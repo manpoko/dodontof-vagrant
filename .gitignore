@@ -1,2 +1,8 @@
+*.swp
+data/item_result.csv
+local/
+.bundle
+vendor/
+Gemfile.lock
 .vagrant/
-cookbooks/
+/cookbooks/
