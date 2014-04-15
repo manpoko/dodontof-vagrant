@@ -10,7 +10,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = 'dodontof-vm'
 
   config.vm.network :private_network, ip:"192.168.50.20"
-  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 22, host: 2225
+  config.vm.network :forwarded_port, guest: 80, host: 8088
 
   config.omnibus.chef_version = :latest
 
